@@ -1,0 +1,37 @@
+# ==========================
+# SentinelMAE Configuration
+# ==========================
+
+project:
+  name: SentinelMAE
+  seed: 42
+  device: "cpu"   # change to "cuda" if using GPU
+
+data:
+  train_path: "data/processed/train"
+  val_path: "data/processed/val"
+  num_classes: 14
+  num_frames: 16
+  image_size: 224
+  batch_size: 4
+  num_workers: 2
+
+model:
+  backbone: "MCG-NJU/videomae-base"
+  pretrained: true
+  dropout: 0.1
+
+training:
+  epochs: 10
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  gradient_clip: 1.0
+  log_interval: 10
+  save_dir: "models/checkpoints"
+
+optimizer:
+  type: "adamw"
+
+scheduler:
+  type: "cosine"
+  warmup_epochs: 2
